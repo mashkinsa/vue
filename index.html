@@ -22,15 +22,26 @@
                 <p v-if="inStock">In Stock</p>
                 <p v-else>Out of Stock</p>
                 <span v-if="onSale">On Sale</span>
+
                 <ul>
                     <li v-for="detail in details">{{ detail }}</li>
                 </ul>
-                <div v-for="variant in variants">
-                   <p>{{ variant.variantColor }}</p>
+
+                <div v-for="variant in variants" :key="variant.variantId">
+                    <p @mouseover="updateProduct(variant.variantImage)">
+                        {{ variant.variantColor }}
+                    </p>
                 </div>
+
                 <ul>
                     <li v-for="size in sizes" :key="size">{{ size }}</li>
                 </ul>
+
+                <div class="cart">
+                   <p>Cart({{ cart }})</p>
+                </div>
+                <button v-on:click="addToCart">Add to cart</button>
+                <button v-on:click="removeFromCart">Remove from cart</button>
             </div>
         </div>
      </div>
